@@ -1,6 +1,6 @@
 // What is a constructor function? 
 
-// a function that creates an object class, and allows you 
+// A function that creates an object class, and allows you 
 // to easily create multiple instances of said class.
 
 // It's best practice to capitalize constructor functions
