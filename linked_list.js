@@ -18,18 +18,18 @@ function LinkedList() {
 	this.head = null;
 	this.tail = null;
 }
- 
- function Node(value, next, prev) {
- 	this.value = value;
- 	this.next = next;
- 	this.prev = prev;
- }
+
+function Node(value, next, prev) {
+	this.value = value;
+	this.next = next;
+	this.prev = prev;
+}
 
 LinkedList.prototype.addToHead = function(value) {  // creates method
 var newNode = new Node(value, this.head, null); // creates new node 
-	if (this.head) this.head.prev = newNode; // handles case if node
-	else this.tail = newNode; // if empty, set the end to this node 
-	this.head = newNode; // whether empty or not, we want our new node at front of list
+if (this.head) this.head.prev = newNode; // handles case if node
+else this.tail = newNode; // if empty, set the end to this node 
+this.head = newNode; // whether empty or not, we want our new node at front of list
 };
 
 // similar to add to head, just reverse
@@ -59,12 +59,27 @@ LinkedList.prototype.removeTail = function() {
 }
 
 LinkedList.prototype.search = function(searchValue) {
-  var currentNode = this.head;
- while(currentNode) {
-   if (currentNode.value === searchValue) return currentNode.value;
-  currentNode = currentNode.next; 
- }
- return null;
+	var currentNode = this.head;
+	while(currentNode) {
+		if (currentNode.value === searchValue) return currentNode.value;
+		currentNode = currentNode.next; 
+	}
+	return null;
+};
+
+LinkedList.prototype.indexOf = function(value) {
+// body...
+var indexes = [];
+var currentIndex = 0;
+var currentNode = this.head;
+while(currentNode) {
+	if (currentNode.value === value) {
+		indexes.push(currentIndex);
+	}
+	currentNode = currentNode.next;
+	currentIndex++;
+}
+return indexes;
 };
 
 var myLL = new LinkedList();
@@ -74,9 +89,24 @@ myLL.addToHead(70);
 myLL.addToTail('world');
 myLL.addToTail(19);
 
-console.log(myLL.search(10));
+console.log(myLL.indexOf(5));
 
-/*
-var ll = new LinkedList();
-ll.search();
-*/
+// -- performance and time complexity of linked lists --
+
+// constant time - 0 (1);
+// linear time complexity - 0 (n);
+
+// - adding/removing head 
+// - adding/removing tail
+
+// they are rather performant in nature 
+
+// they're a good data stucture to use in lower level languages that 
+// deal with memory management, that means languages that deal with 
+// physical memory space on the hard drive is that they allow you 
+// to break up data into little pieces and don't necessary 
+// need to be stored together. Storing data in memory means it's all together, 
+// but if some areas of memory are taken up, you can use a linked list as 
+// the 'next' pointer is connected to the next node 
+
+// effective at using space or memory
